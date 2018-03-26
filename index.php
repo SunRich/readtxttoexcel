@@ -97,6 +97,8 @@ class rndChinaName
         return $name;
     }
 }
+
+set_time_limit(0);
 $rndChinaName = new rndChinaName();
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->getProperties();
@@ -110,7 +112,7 @@ while (!feof($file)) {
     $email = fgets($file);
     if (trim($email)) {
         $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('A' . $i,$rndChinaName->getName(2))
+            ->setCellValue('A' . $i, $rndChinaName->getName(2))
             ->setCellValue('B' . $i, $email);
         $i++;
     }
@@ -122,7 +124,7 @@ $filename = "bao" . date('Ymd') . ".xls";
 header("Content-Disposition: attachment; filename=\"$filename\"");
 header("Content-Type: application/vnd.ms-excel");
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="' . $title . '.xls"');
+header('Content-Disposition: attachment;filename='.time().'.xls"');
 header('Cache-Control: max-age=0');
 // If you're serving to IE 9, then the following may be needed
 header('Cache-Control: max-age=1');
